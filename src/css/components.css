@@ -43,6 +43,83 @@
   z-index: 2;
 }
 
+/* Hero ambient motion — transform/opacity only, zero layout cost.
+ * Girih drift is seamless: one 104px tile per 48s loop, clipped by .stage-dark overflow. */
+.hero-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  will-change: transform;
+}
+
+.hero-ambient-orb--a {
+  width: 520px;
+  height: 520px;
+  top: -160px;
+  inset-inline-start: -80px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.28), transparent 65%);
+  animation: hero-orb-a 22s ease-in-out infinite alternate;
+}
+
+.hero-ambient-orb--b {
+  width: 460px;
+  height: 460px;
+  bottom: -180px;
+  inset-inline-end: -60px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.22), transparent 65%);
+  animation: hero-orb-b 29s ease-in-out infinite alternate;
+}
+
+@keyframes hero-orb-a {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(90px, 56px, 0); }
+}
+
+@keyframes hero-orb-b {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-70px, -48px, 0); }
+}
+
+.hero-stage .girih-backdrop {
+  inset: -104px;
+  opacity: 0.13;
+  animation: girih-drift 30s linear infinite;
+  will-change: transform;
+}
+
+@keyframes girih-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(104px, 104px, 0); }
+}
+
+/* Slow light sweep across the hero — the legible moving element.
+ * Linear one-way loop: constant speed, resets while fully off-screen. */
+.hero-ambient-sweep {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 50%;
+  width: 480px;
+  margin-left: -240px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+  transform: translate3d(-1020px, 0, 0) rotate(12deg);
+  animation: hero-sweep 14s linear infinite;
+  will-change: transform;
+}
+
+@keyframes hero-sweep {
+  from { transform: translate3d(-1020px, 0, 0) rotate(12deg); }
+  to { transform: translate3d(1020px, 0, 0) rotate(12deg); }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;

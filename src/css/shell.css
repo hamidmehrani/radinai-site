@@ -69,6 +69,13 @@
   background: var(--rdn-turquoise-bright);
   box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.18);
   flex-shrink: 0;
+  animation: pulse-ring 2.6s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.18); }
+  70% { box-shadow: 0 0 0 11px rgba(45, 212, 191, 0); }
+  100% { box-shadow: 0 0 0 4px rgba(45, 212, 191, 0); }
 }
 
 .telemetry-meta {

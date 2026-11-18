@@ -22,6 +22,62 @@
     });
   }
 
+  /* 1b. Live Macro Counters (stats ribbon, once, exact final text restored).
+   * No GSAP dependency, no markup change: parses the rendered Persian value,
+   * counts up when the ribbon enters view, ends on the exact original string. */
+  if (!reduced && 'IntersectionObserver' in window) {
+    var FA_DIGITS = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    var toFaGrouped = function (n) {
+      return String(Math.round(n))
+        .replace(/\B(?=(\d{3})+(?!\d))/g, '٬')
+        .replace(/\d/g, function (d) {
+          return FA_DIGITS[Number(d)];
+        });
+    };
+    var toLatinDigits = function (s) {
+      return s
+        .replace(/[۰-۹]/g, function (d) {
+          return String(FA_DIGITS.indexOf(d));
+        })
+        .replace(/[٬,]/g, '');
+    };
+    var counters = document.querySelectorAll('.stat-value');
+    if (counters.length) {
+      var counterObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            counterObserver.unobserve(el);
+            var original = el.textContent;
+            var parts = toLatinDigits(original).match(/^([^0-9]*)([0-9]+)([^0-9]*)$/);
+            if (!parts) return;
+            var target = parseInt(parts[2], 10);
+            if (!target) return;
+            var start = null;
+            var DURATION = 1500;
+            var step = function (ts) {
+              if (start === null) start = ts;
+              var p = Math.min((ts - start) / DURATION, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = parts[1] + toFaGrouped(target * eased) + parts[3];
+              if (p < 1) {
+                requestAnimationFrame(step);
+              } else {
+                el.textContent = original;
+              }
+            };
+            requestAnimationFrame(step);
+          });
+        },
+        { threshold: 0.35 }
+      );
+      counters.forEach(function (el) {
+        counterObserver.observe(el);
+      });
+    }
+  }
+
   if (reduced || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
     return;
   }
@@ -102,6 +158,18 @@
       workbench,
       { y: 18 },
       { y: 0, duration: 0.75, ease: 'power3.out', clearProps: 'transform' }
+    );
+  }
+
+  /* 6. Hero Workbench Staggered Entrance (Transform-only, runs with the settle) */
+  var wbParts = document.querySelectorAll(
+    '.hero-workbench .workbench-top, .hero-workbench .lens-tabs, .hero-workbench .lens-panel.is-active'
+  );
+  if (wbParts.length) {
+    gsap.fromTo(
+      wbParts,
+      { y: 10 },
+      { y: 0, duration: 0.6, delay: 0.12, stagger: 0.08, ease: 'power3.out', clearProps: 'transform' }
     );
   }
 })();

@@ -48,6 +48,7 @@ export function renderHomePage(assetVersion) {
 
   const mainHtml = `
     <section class="stage-dark hero-stage">
+      <div class="hero-ambient" aria-hidden="true"><span class="hero-ambient-orb hero-ambient-orb--a"></span><span class="hero-ambient-orb hero-ambient-orb--b"></span><span class="hero-ambient-sweep"></span></div>
       <div class="girih-backdrop" aria-hidden="true"></div>
       <div class="container stage-content hero-grid">
         <div>
