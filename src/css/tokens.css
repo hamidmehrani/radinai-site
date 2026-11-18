@@ -1,0 +1,189 @@
+/* RadinAI (radinai.ir) — Design Tokens & Self-Hosted Variable Persian Typography */
+
+@font-face {
+  font-family: 'YekanBakhFa';
+  src: url('/fonts/YekanBakhFaNum-VF.woff2') format('woff2-variations'),
+       url('/fonts/YekanBakhFaNum-VF.woff2') format('woff2');
+  font-weight: 100 950;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANYekanXFa';
+  src: url('/fonts/IRANYekanXVFaNumVF.woff2') format('woff2-variations'),
+       url('/fonts/IRANYekanXVFaNumVF.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url('/fonts/IBM-Plex-Mono-Normal-400-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url('/fonts/IBM-Plex-Mono-Normal-600-latin.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Core Named Architectural Palette */
+  --rdn-ink: #070B14;
+  --rdn-ink-elevated: #0D1526;
+  --rdn-ink-card: #111C33;
+  --rdn-ink-border: rgba(148, 163, 184, 0.16);
+  --rdn-ink-border-strong: rgba(56, 189, 248, 0.36);
+
+  --rdn-paper: #F5F4EE;
+  --rdn-paper-alt: #ECEAE1;
+  --rdn-sheet: #FFFFFF;
+  --rdn-paper-border: #DAD7CB;
+  --rdn-paper-border-strong: #B8B3A2;
+
+  /* Text Hierarchy */
+  --rdn-text-on-dark: #F8FAFC;
+  --rdn-muted-on-dark: #94A3B8;
+  --rdn-subtle-on-dark: #CBD5E1;
+
+  --rdn-text-on-light: #0A101D;
+  --rdn-body-on-light: #334155;
+  --rdn-muted-on-light: #526075;
+
+  /* Brand Accents (WCAG AA/AAA Verified) */
+  --rdn-lapis: #1D4ED8;
+  --rdn-lapis-hover: #1E40AF;
+  --rdn-lapis-bright: #38BDF8;
+  --rdn-lapis-soft-light: rgba(29, 78, 216, 0.08);
+  --rdn-lapis-soft-dark: rgba(56, 189, 248, 0.13);
+
+  --rdn-turquoise: #0F766E;
+  --rdn-turquoise-bright: #2DD4BF;
+  --rdn-turquoise-soft-light: rgba(15, 118, 110, 0.10);
+  --rdn-turquoise-soft-dark: rgba(45, 212, 191, 0.14);
+
+  --rdn-copper: #B45309;
+  --rdn-copper-bright: #FBBF24;
+  --rdn-copper-soft-light: rgba(180, 83, 9, 0.10);
+  --rdn-copper-soft-dark: rgba(251, 191, 36, 0.14);
+
+  /* Typography */
+  --rdn-font-display: 'YekanBakhFa', 'IRANYekanXFa', Tahoma, sans-serif;
+  --rdn-font-body: 'IRANYekanXFa', 'YekanBakhFa', Tahoma, sans-serif;
+  --rdn-font-mono: 'IBMPlexMono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing & Layout */
+  --rdn-container: 1280px;
+  --rdn-gutter: clamp(16px, 4vw, 40px);
+  --rdn-r-sm: 10px;
+  --rdn-r-md: 16px;
+  --rdn-r-lg: 22px;
+  --rdn-r-pill: 999px;
+
+  --rdn-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  font-family: var(--rdn-font-body);
+  font-size: 16px;
+  line-height: 1.82;
+  color: var(--rdn-text-on-light);
+  background-color: var(--rdn-ink);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  letter-spacing: 0 !important;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--rdn-paper);
+  color: var(--rdn-text-on-light);
+  font-family: var(--rdn-font-body);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "ss01", "tnum";
+  font-synthesis: none;
+  letter-spacing: 0 !important;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--rdn-font-display);
+  font-synthesis: none;
+  letter-spacing: 0 !important;
+  text-wrap: balance;
+  margin-block: 0;
+  line-height: 1.32;
+}
+
+p, li, label, input, select, textarea, button, summary {
+  font-family: var(--rdn-font-body);
+  font-synthesis: none;
+  letter-spacing: 0 !important;
+}
+
+img, svg, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--rdn-lapis-bright);
+  outline-offset: 3px;
+}
+
+.ltr-tech {
+  font-family: var(--rdn-font-mono);
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  font-size: 0.88em;
+  font-weight: 500;
+  letter-spacing: -0.01em !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

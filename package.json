@@ -1,0 +1,13 @@
+{
+  "name": "radinai-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "RadinAI (radinai.ir) — استودیو مهندسی نرم‌افزار، محصولات وردپرس (دفتریار)، اتوماسیون هوش مصنوعی و راهکارهای سازمانی",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "verify": "node scripts/build.mjs && node scripts/verify-build.mjs",
+    "functions:check": "npx wrangler pages functions build ./functions --outdir /tmp/radinai-worker-check && rm -rf /tmp/radinai-worker-check",
+    "qa": "node scripts/qa-playwright.mjs"
+  }
+}

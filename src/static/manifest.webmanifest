@@ -1,0 +1,17 @@
+{
+  "name": "رادین هوش | استودیو مهندسی نرم‌افزار و هوش مصنوعی",
+  "short_name": "رادین هوش",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070B14",
+  "theme_color": "#070B14",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
